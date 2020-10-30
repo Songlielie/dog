@@ -20,7 +20,7 @@ public class Sort {
             arr1[i] = Integer.parseInt(s[i]);
         }
         long startTimes = System.currentTimeMillis();
-        int[] ints = selectOneArr(arr);
+        int[] ints = Heap.maxHeap(arr);
         long endTimes = System.currentTimeMillis();
         System.out.println(endTimes-startTimes+"ms");
         System.out.println(Arrays.toString(ints));
@@ -107,7 +107,15 @@ public class Sort {
         return arr0;
     }
 
-    static void head(){
+    static int[] quickSort(int[] arr4){
 
+        int len = arr4.length;
+        int mid = arr4[0];
+        for(int i =1; i<len;i++){
+            if (arr4[i]<mid && i>1){
+                break;
+            }
+        }
+        return arr4;
     }
 }
