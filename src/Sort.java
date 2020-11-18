@@ -24,7 +24,7 @@ public class Sort {
         long endTimes = System.currentTimeMillis();
         System.out.println(endTimes-startTimes+"ms");
         System.out.println(Arrays.toString(ints));
-        System.out.println(selectOne(arr1));
+        System.out.println(Arrays.toString(quickSort(arr1,0,arr1.length-1)));
     }
 
     static int[] bubble(int[] arr){
@@ -107,15 +107,29 @@ public class Sort {
         return arr0;
     }
 
-    static int[] quickSort(int[] arr4){
-
-        int len = arr4.length;
-        int mid = arr4[0];
-        for(int i =1; i<len;i++){
-            if (arr4[i]<mid && i>1){
-                break;
+    static int[] quickSort(int[] arr,int begin,int end)
+    {
+        //如果区间不只一个数
+        if(begin < end)
+        {
+            int temp = arr[begin];
+            int i = begin;
+            int j = end;
+            while(i < j)
+            {
+                while(i<j && arr[j] > temp)
+                    j--;
+                arr[i] = arr[j];
+                while(i<j && arr[i] <= temp)
+                    i++;
+                arr[j] = arr[i];
             }
+            arr[i] = temp;
+            quickSort(arr,begin,i-1);
+            quickSort(arr,i+1,end);
         }
-        return arr4;
+        else
+            return arr;
+        return arr;
     }
 }
