@@ -17,7 +17,7 @@ class CubbyHole{
             try {
                 wait();
             }
-            catch (InterruptedException e){
+            catch (InterruptedException ignored){
             }
         }
         available = false;
@@ -28,7 +28,7 @@ class CubbyHole{
         while (available) {
             try {
                 wait();
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ignored) {
             }
         }
         content = value;
@@ -38,8 +38,8 @@ class CubbyHole{
 }
 
 class Consumer extends Thread{
-    private CubbyHole cubbyHole;
-    private int number;
+    private final CubbyHole cubbyHole;
+    private final int number;
     public Consumer(CubbyHole c, int number){
         cubbyHole = c;
         this.number = number;
@@ -53,8 +53,8 @@ class Consumer extends Thread{
 }
 
 class Producer extends Thread{
-    private CubbyHole cubbyHole;
-    private int number;
+    private final CubbyHole cubbyHole;
+    private final int number;
     public Producer(CubbyHole c,int number){
         cubbyHole = c;
         this.number = number;
